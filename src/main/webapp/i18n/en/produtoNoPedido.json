@@ -1,0 +1,28 @@
+{
+  "jhipsterSampleApplicationApp": {
+    "produtoNoPedido": {
+      "home": {
+        "title": "Produto No Pedidos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Produto No Pedido",
+        "createOrEditLabel": "Create or edit a Produto No Pedido",
+        "notFound": "No Produto No Pedidos found"
+      },
+      "created": "A new Produto No Pedido is created with identifier {{ param }}",
+      "updated": "A Produto No Pedido is updated with identifier {{ param }}",
+      "deleted": "A Produto No Pedido is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Produto No Pedido {{ id }}?"
+      },
+      "detail": {
+        "title": "Produto No Pedido"
+      },
+      "id": "ID",
+      "quantidade": "Quantidade",
+      "preco": "Preco",
+      "criado": "Criado",
+      "produtoEmEstoque": "Produto Em Estoque",
+      "pedido": "Pedido"
+    }
+  }
+}

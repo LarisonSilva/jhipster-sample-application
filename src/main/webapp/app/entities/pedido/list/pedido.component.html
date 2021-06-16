@@ -1,0 +1,88 @@
+<div>
+  <h2 id="page-heading" data-cy="PedidoHeading">
+    <span jhiTranslate="jhipsterSampleApplicationApp.pedido.home.title">Pedidos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="jhipsterSampleApplicationApp.pedido.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-pedido"
+        [routerLink]="['/pedido/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="jhipsterSampleApplicationApp.pedido.home.createLabel"> Create a new Pedido </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="pedidos?.length === 0">
+    <span jhiTranslate="jhipsterSampleApplicationApp.pedido.home.notFound">No pedidos found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="pedidos && pedidos.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterSampleApplicationApp.pedido.efetuado">Efetuado</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterSampleApplicationApp.pedido.status">Status</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterSampleApplicationApp.pedido.precoTotal">Preco Total</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterSampleApplicationApp.pedido.comentarios">Comentarios</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterSampleApplicationApp.pedido.codigoPagamento">Codigo Pagamento</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterSampleApplicationApp.pedido.perfilUser">Perfil User</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterSampleApplicationApp.pedido.endereco">Endereco</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pedido of pedidos; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/pedido', pedido.id, 'view']">{{ pedido.id }}</a>
+          </td>
+          <td>{{ pedido.efetuado | formatMediumDatetime }}</td>
+          <td jhiTranslate="{{ 'jhipsterSampleApplicationApp.AndamentoPedido.' + pedido.status }}">{{ pedido.status }}</td>
+          <td>{{ pedido.precoTotal }}</td>
+          <td>{{ pedido.comentarios }}</td>
+          <td>{{ pedido.codigoPagamento }}</td>
+          <td>
+            <div *ngIf="pedido.perfilUser">
+              <a [routerLink]="['/perfil-user', pedido.perfilUser?.id, 'view']">{{ pedido.perfilUser?.nome }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="pedido.endereco">
+              <a [routerLink]="['/endereco', pedido.endereco?.id, 'view']">{{ pedido.endereco?.nome }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/pedido', pedido.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/pedido', pedido.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(pedido)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

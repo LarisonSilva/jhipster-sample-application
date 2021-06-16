@@ -1,0 +1,94 @@
+<div>
+  <h2 id="page-heading" data-cy="ProdutoEmEstoqueHeading">
+    <span jhiTranslate="jhipsterSampleApplicationApp.produtoEmEstoque.home.title">Produto Em Estoques</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="jhipsterSampleApplicationApp.produtoEmEstoque.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-produto-em-estoque"
+        [routerLink]="['/produto-em-estoque/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="jhipsterSampleApplicationApp.produtoEmEstoque.home.createLabel"> Create a new Produto Em Estoque </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="produtoEmEstoques?.length === 0">
+    <span jhiTranslate="jhipsterSampleApplicationApp.produtoEmEstoque.home.notFound">No produtoEmEstoques found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="produtoEmEstoques && produtoEmEstoques.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterSampleApplicationApp.produtoEmEstoque.nome">Nome</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterSampleApplicationApp.produtoEmEstoque.descricao">Descricao</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterSampleApplicationApp.produtoEmEstoque.fotoUrl">Foto Url</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterSampleApplicationApp.produtoEmEstoque.sku">Sku</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterSampleApplicationApp.produtoEmEstoque.ean">Ean</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterSampleApplicationApp.produtoEmEstoque.criado">Criado</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterSampleApplicationApp.produtoEmEstoque.preco">Preco</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterSampleApplicationApp.produtoEmEstoque.precoPromocional">Preco Promocional</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterSampleApplicationApp.produtoEmEstoque.totalEstoque">Total Estoque</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let produtoEmEstoque of produtoEmEstoques; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/produto-em-estoque', produtoEmEstoque.id, 'view']">{{ produtoEmEstoque.id }}</a>
+          </td>
+          <td>{{ produtoEmEstoque.nome }}</td>
+          <td>{{ produtoEmEstoque.descricao }}</td>
+          <td>{{ produtoEmEstoque.fotoUrl }}</td>
+          <td>{{ produtoEmEstoque.sku }}</td>
+          <td>{{ produtoEmEstoque.ean }}</td>
+          <td>{{ produtoEmEstoque.criado | formatMediumDatetime }}</td>
+          <td>{{ produtoEmEstoque.preco }}</td>
+          <td>{{ produtoEmEstoque.precoPromocional }}</td>
+          <td>{{ produtoEmEstoque.totalEstoque }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/produto-em-estoque', produtoEmEstoque.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/produto-em-estoque', produtoEmEstoque.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(produtoEmEstoque)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

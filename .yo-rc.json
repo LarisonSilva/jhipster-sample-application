@@ -42,7 +42,9 @@
     "jwtSecretKey": "OWRmZTNhN2E0ZjMxMzZmZGNhNjA2YmVhYTNjOGIxYWFkNTJkNGNkZDdiZjY0OTkyOWU4ZTI4NjQwY2QwYjQ0N2Q2MTkwNDBiNzQwNmQxMzYyNWY4YzRlNjBhODY0NjUyMTBlZWM5NmFmYjA2ZTMyNDM4YTA5NGQwNmVjZTg4NzE=",
     "clientTheme": "none",
     "clientThemeVariant": "",
-    "reactive": false
+    "reactive": false,
+    "entities": ["PerfilUser", "Endereco", "ProdutoEmEstoque", "Pedido", "ProdutoNoPedido"],
+    "lastLiquibaseTimestamp": 1623816308000
   },
   "git-provider": "GitHub",
   "git-company": "LarisonSilva",

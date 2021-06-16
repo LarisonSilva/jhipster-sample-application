@@ -1,0 +1,56 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="produtoNoPedido">
+      <h2 data-cy="produtoNoPedidoDetailsHeading">
+        <span jhiTranslate="jhipsterSampleApplicationApp.produtoNoPedido.detail.title">Produto No Pedido</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ produtoNoPedido.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.produtoNoPedido.quantidade">Quantidade</span></dt>
+        <dd>
+          <span>{{ produtoNoPedido.quantidade }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.produtoNoPedido.preco">Preco</span></dt>
+        <dd>
+          <span>{{ produtoNoPedido.preco }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.produtoNoPedido.criado">Criado</span></dt>
+        <dd>
+          <span>{{ produtoNoPedido.criado | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.produtoNoPedido.produtoEmEstoque">Produto Em Estoque</span></dt>
+        <dd>
+          <div *ngIf="produtoNoPedido.produtoEmEstoque">
+            <a [routerLink]="['/produto-em-estoque', produtoNoPedido.produtoEmEstoque?.id, 'view']">{{
+              produtoNoPedido.produtoEmEstoque?.nome
+            }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.produtoNoPedido.pedido">Pedido</span></dt>
+        <dd>
+          <div *ngIf="produtoNoPedido.pedido">
+            <a [routerLink]="['/pedido', produtoNoPedido.pedido?.id, 'view']">{{ produtoNoPedido.pedido?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/produto-no-pedido', produtoNoPedido.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

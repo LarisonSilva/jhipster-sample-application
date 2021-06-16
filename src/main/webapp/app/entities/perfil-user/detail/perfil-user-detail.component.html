@@ -1,0 +1,62 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="perfilUser">
+      <h2 data-cy="perfilUserDetailsHeading">
+        <span jhiTranslate="jhipsterSampleApplicationApp.perfilUser.detail.title">Perfil User</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ perfilUser.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.perfilUser.nome">Nome</span></dt>
+        <dd>
+          <span>{{ perfilUser.nome }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.perfilUser.senha">Senha</span></dt>
+        <dd>
+          <span>{{ perfilUser.senha }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.perfilUser.fotoUrl">Foto Url</span></dt>
+        <dd>
+          <span>{{ perfilUser.fotoUrl }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.perfilUser.cpf">Cpf</span></dt>
+        <dd>
+          <span>{{ perfilUser.cpf }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.perfilUser.dataNascimento">Data Nascimento</span></dt>
+        <dd>
+          <span>{{ perfilUser.dataNascimento | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.perfilUser.criado">Criado</span></dt>
+        <dd>
+          <span>{{ perfilUser.criado | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.perfilUser.email">Email</span></dt>
+        <dd>
+          <span>{{ perfilUser.email }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.perfilUser.contato">Contato</span></dt>
+        <dd>
+          <span>{{ perfilUser.contato }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/perfil-user', perfilUser.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

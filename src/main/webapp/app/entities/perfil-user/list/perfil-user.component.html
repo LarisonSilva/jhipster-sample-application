@@ -1,0 +1,92 @@
+<div>
+  <h2 id="page-heading" data-cy="PerfilUserHeading">
+    <span jhiTranslate="jhipsterSampleApplicationApp.perfilUser.home.title">Perfil Users</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="jhipsterSampleApplicationApp.perfilUser.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-perfil-user"
+        [routerLink]="['/perfil-user/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="jhipsterSampleApplicationApp.perfilUser.home.createLabel"> Create a new Perfil User </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="perfilUsers?.length === 0">
+    <span jhiTranslate="jhipsterSampleApplicationApp.perfilUser.home.notFound">No perfilUsers found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="perfilUsers && perfilUsers.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterSampleApplicationApp.perfilUser.nome">Nome</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterSampleApplicationApp.perfilUser.senha">Senha</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterSampleApplicationApp.perfilUser.fotoUrl">Foto Url</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterSampleApplicationApp.perfilUser.cpf">Cpf</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterSampleApplicationApp.perfilUser.dataNascimento">Data Nascimento</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterSampleApplicationApp.perfilUser.criado">Criado</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterSampleApplicationApp.perfilUser.email">Email</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterSampleApplicationApp.perfilUser.contato">Contato</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let perfilUser of perfilUsers; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/perfil-user', perfilUser.id, 'view']">{{ perfilUser.id }}</a>
+          </td>
+          <td>{{ perfilUser.nome }}</td>
+          <td>{{ perfilUser.senha }}</td>
+          <td>{{ perfilUser.fotoUrl }}</td>
+          <td>{{ perfilUser.cpf }}</td>
+          <td>{{ perfilUser.dataNascimento | formatMediumDate }}</td>
+          <td>{{ perfilUser.criado | formatMediumDatetime }}</td>
+          <td>{{ perfilUser.email }}</td>
+          <td>{{ perfilUser.contato }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/perfil-user', perfilUser.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/perfil-user', perfilUser.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(perfilUser)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

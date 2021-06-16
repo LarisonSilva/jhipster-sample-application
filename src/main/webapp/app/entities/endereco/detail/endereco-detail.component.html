@@ -1,0 +1,62 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="endereco">
+      <h2 data-cy="enderecoDetailsHeading"><span jhiTranslate="jhipsterSampleApplicationApp.endereco.detail.title">Endereco</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ endereco.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.endereco.nome">Nome</span></dt>
+        <dd>
+          <span>{{ endereco.nome }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.endereco.cep">Cep</span></dt>
+        <dd>
+          <span>{{ endereco.cep }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.endereco.logradouro">Logradouro</span></dt>
+        <dd>
+          <span>{{ endereco.logradouro }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.endereco.bairro">Bairro</span></dt>
+        <dd>
+          <span>{{ endereco.bairro }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.endereco.numero">Numero</span></dt>
+        <dd>
+          <span>{{ endereco.numero }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.endereco.cidade">Cidade</span></dt>
+        <dd>
+          <span>{{ endereco.cidade }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.endereco.complemento">Complemento</span></dt>
+        <dd>
+          <span>{{ endereco.complemento }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.endereco.perfilUser">Perfil User</span></dt>
+        <dd>
+          <div *ngIf="endereco.perfilUser">
+            <a [routerLink]="['/perfil-user', endereco.perfilUser?.id, 'view']">{{ endereco.perfilUser?.nome }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/endereco', endereco.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

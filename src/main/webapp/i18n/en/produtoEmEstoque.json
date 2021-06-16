@@ -1,0 +1,32 @@
+{
+  "jhipsterSampleApplicationApp": {
+    "produtoEmEstoque": {
+      "home": {
+        "title": "Produto Em Estoques",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Produto Em Estoque",
+        "createOrEditLabel": "Create or edit a Produto Em Estoque",
+        "notFound": "No Produto Em Estoques found"
+      },
+      "created": "A new Produto Em Estoque is created with identifier {{ param }}",
+      "updated": "A Produto Em Estoque is updated with identifier {{ param }}",
+      "deleted": "A Produto Em Estoque is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Produto Em Estoque {{ id }}?"
+      },
+      "detail": {
+        "title": "Produto Em Estoque"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "descricao": "Descricao",
+      "fotoUrl": "Foto Url",
+      "sku": "Sku",
+      "ean": "Ean",
+      "criado": "Criado",
+      "preco": "Preco",
+      "precoPromocional": "Preco Promocional",
+      "totalEstoque": "Total Estoque"
+    }
+  }
+}

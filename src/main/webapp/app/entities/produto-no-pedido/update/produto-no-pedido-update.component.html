@@ -1,0 +1,119 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-produto-no-pedido-heading"
+        data-cy="ProdutoNoPedidoCreateUpdateHeading"
+        jhiTranslate="jhipsterSampleApplicationApp.produtoNoPedido.home.createOrEditLabel"
+      >
+        Create or edit a Produto No Pedido
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.produtoNoPedido.quantidade" for="field_quantidade"
+            >Quantidade</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="quantidade"
+            id="field_quantidade"
+            data-cy="quantidade"
+            formControlName="quantidade"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.produtoNoPedido.preco" for="field_preco"
+            >Preco</label
+          >
+          <input type="number" class="form-control" name="preco" id="field_preco" data-cy="preco" formControlName="preco" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.produtoNoPedido.criado" for="field_criado"
+            >Criado</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_criado"
+              data-cy="criado"
+              type="datetime-local"
+              class="form-control"
+              name="criado"
+              formControlName="criado"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="jhipsterSampleApplicationApp.produtoNoPedido.produtoEmEstoque"
+            for="field_produtoEmEstoque"
+            >Produto Em Estoque</label
+          >
+          <select
+            class="form-control"
+            id="field_produtoEmEstoque"
+            data-cy="produtoEmEstoque"
+            name="produtoEmEstoque"
+            formControlName="produtoEmEstoque"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                produtoEmEstoqueOption.id === editForm.get('produtoEmEstoque')!.value?.id
+                  ? editForm.get('produtoEmEstoque')!.value
+                  : produtoEmEstoqueOption
+              "
+              *ngFor="let produtoEmEstoqueOption of produtoEmEstoquesSharedCollection; trackBy: trackProdutoEmEstoqueById"
+            >
+              {{ produtoEmEstoqueOption.nome }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.produtoNoPedido.pedido" for="field_pedido"
+            >Pedido</label
+          >
+          <select class="form-control" id="field_pedido" data-cy="pedido" name="pedido" formControlName="pedido">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="pedidoOption.id === editForm.get('pedido')!.value?.id ? editForm.get('pedido')!.value : pedidoOption"
+              *ngFor="let pedidoOption of pedidosSharedCollection; trackBy: trackPedidoById"
+            >
+              {{ pedidoOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
