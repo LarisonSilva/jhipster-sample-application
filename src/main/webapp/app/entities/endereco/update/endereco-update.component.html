@@ -1,0 +1,113 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-endereco-heading"
+        data-cy="EnderecoCreateUpdateHeading"
+        jhiTranslate="jhipsterSampleApplicationApp.endereco.home.createOrEditLabel"
+      >
+        Create or edit a Endereco
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.endereco.nome" for="field_nome">Nome</label>
+          <input type="text" class="form-control" name="nome" id="field_nome" data-cy="nome" formControlName="nome" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.endereco.cep" for="field_cep">Cep</label>
+          <input type="text" class="form-control" name="cep" id="field_cep" data-cy="cep" formControlName="cep" />
+          <div *ngIf="editForm.get('cep')!.invalid && (editForm.get('cep')!.dirty || editForm.get('cep')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('cep')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.endereco.logradouro" for="field_logradouro"
+            >Logradouro</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="logradouro"
+            id="field_logradouro"
+            data-cy="logradouro"
+            formControlName="logradouro"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.endereco.bairro" for="field_bairro">Bairro</label>
+          <input type="text" class="form-control" name="bairro" id="field_bairro" data-cy="bairro" formControlName="bairro" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.endereco.numero" for="field_numero">Numero</label>
+          <input type="text" class="form-control" name="numero" id="field_numero" data-cy="numero" formControlName="numero" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.endereco.cidade" for="field_cidade">Cidade</label>
+          <input type="text" class="form-control" name="cidade" id="field_cidade" data-cy="cidade" formControlName="cidade" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.endereco.complemento" for="field_complemento"
+            >Complemento</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="complemento"
+            id="field_complemento"
+            data-cy="complemento"
+            formControlName="complemento"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.endereco.perfilUser" for="field_perfilUser"
+            >Perfil User</label
+          >
+          <select class="form-control" id="field_perfilUser" data-cy="perfilUser" name="perfilUser" formControlName="perfilUser">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                perfilUserOption.id === editForm.get('perfilUser')!.value?.id ? editForm.get('perfilUser')!.value : perfilUserOption
+              "
+              *ngFor="let perfilUserOption of perfilUsersSharedCollection; trackBy: trackPerfilUserById"
+            >
+              {{ perfilUserOption.nome }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

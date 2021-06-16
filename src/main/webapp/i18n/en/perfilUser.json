@@ -1,0 +1,31 @@
+{
+  "jhipsterSampleApplicationApp": {
+    "perfilUser": {
+      "home": {
+        "title": "Perfil Users",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Perfil User",
+        "createOrEditLabel": "Create or edit a Perfil User",
+        "notFound": "No Perfil Users found"
+      },
+      "created": "A new Perfil User is created with identifier {{ param }}",
+      "updated": "A Perfil User is updated with identifier {{ param }}",
+      "deleted": "A Perfil User is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Perfil User {{ id }}?"
+      },
+      "detail": {
+        "title": "Perfil User"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "senha": "Senha",
+      "fotoUrl": "Foto Url",
+      "cpf": "Cpf",
+      "dataNascimento": "Data Nascimento",
+      "criado": "Criado",
+      "email": "Email",
+      "contato": "Contato"
+    }
+  }
+}

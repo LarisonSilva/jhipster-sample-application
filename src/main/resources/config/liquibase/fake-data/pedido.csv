@@ -1,0 +1,11 @@
+id;efetuado;status;preco_total;comentarios;codigo_pagamento
+1;2021-06-15T16:41:05;PEDIDO;79963;../fake-data/blob/hipster.txt;Wooden
+2;2021-06-15T09:22:32;ENTREGUE;41856;../fake-data/blob/hipster.txt;Shoes (Malvinas) copying
+3;2021-06-15T07:58:27;PEDIDO;36323;../fake-data/blob/hipster.txt;XML Assurance National
+4;2021-06-16T00:28:49;PAGO;75612;../fake-data/blob/hipster.txt;Unbranded
+5;2021-06-15T23:23:48;CANCELADO;34393;../fake-data/blob/hipster.txt;clicks-and-mortar deposit
+6;2021-06-15T10:30:09;PAGO;80675;../fake-data/blob/hipster.txt;Towels
+7;2021-06-15T19:24:44;ENTREGUE;86627;../fake-data/blob/hipster.txt;payment holistic
+8;2021-06-15T19:38:28;ENTREGUE;85263;../fake-data/blob/hipster.txt;Music optimize
+9;2021-06-15T23:06:06;PAGO;4837;../fake-data/blob/hipster.txt;Franc Forges
+10;2021-06-15T17:07:01;CANCELADO;57472;../fake-data/blob/hipster.txt;Towels Argentine Hawaii

@@ -1,0 +1,143 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-pedido-heading"
+        data-cy="PedidoCreateUpdateHeading"
+        jhiTranslate="jhipsterSampleApplicationApp.pedido.home.createOrEditLabel"
+      >
+        Create or edit a Pedido
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.pedido.efetuado" for="field_efetuado"
+            >Efetuado</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_efetuado"
+              data-cy="efetuado"
+              type="datetime-local"
+              class="form-control"
+              name="efetuado"
+              formControlName="efetuado"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.pedido.status" for="field_status">Status</label>
+          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+            <option [ngValue]="null">{{ 'jhipsterSampleApplicationApp.AndamentoPedido.null' | translate }}</option>
+            <option value="AGUARDANDO_PAGAMENTO">
+              {{ 'jhipsterSampleApplicationApp.AndamentoPedido.AGUARDANDO_PAGAMENTO' | translate }}
+            </option>
+            <option value="CANCELADO">{{ 'jhipsterSampleApplicationApp.AndamentoPedido.CANCELADO' | translate }}</option>
+            <option value="ESTORNADO">{{ 'jhipsterSampleApplicationApp.AndamentoPedido.ESTORNADO' | translate }}</option>
+            <option value="ENTREGUE">{{ 'jhipsterSampleApplicationApp.AndamentoPedido.ENTREGUE' | translate }}</option>
+            <option value="PEDIDO">{{ 'jhipsterSampleApplicationApp.AndamentoPedido.PEDIDO' | translate }}</option>
+            <option value="PAGO">{{ 'jhipsterSampleApplicationApp.AndamentoPedido.PAGO' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.pedido.precoTotal" for="field_precoTotal"
+            >Preco Total</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="precoTotal"
+            id="field_precoTotal"
+            data-cy="precoTotal"
+            formControlName="precoTotal"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.pedido.comentarios" for="field_comentarios"
+            >Comentarios</label
+          >
+          <textarea
+            class="form-control"
+            name="comentarios"
+            id="field_comentarios"
+            data-cy="comentarios"
+            formControlName="comentarios"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.pedido.codigoPagamento" for="field_codigoPagamento"
+            >Codigo Pagamento</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="codigoPagamento"
+            id="field_codigoPagamento"
+            data-cy="codigoPagamento"
+            formControlName="codigoPagamento"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.pedido.perfilUser" for="field_perfilUser"
+            >Perfil User</label
+          >
+          <select class="form-control" id="field_perfilUser" data-cy="perfilUser" name="perfilUser" formControlName="perfilUser">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                perfilUserOption.id === editForm.get('perfilUser')!.value?.id ? editForm.get('perfilUser')!.value : perfilUserOption
+              "
+              *ngFor="let perfilUserOption of perfilUsersSharedCollection; trackBy: trackPerfilUserById"
+            >
+              {{ perfilUserOption.nome }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="jhipsterSampleApplicationApp.pedido.endereco" for="field_endereco"
+            >Endereco</label
+          >
+          <select class="form-control" id="field_endereco" data-cy="endereco" name="endereco" formControlName="endereco">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="enderecoOption.id === editForm.get('endereco')!.value?.id ? editForm.get('endereco')!.value : enderecoOption"
+              *ngFor="let enderecoOption of enderecosSharedCollection; trackBy: trackEnderecoById"
+            >
+              {{ enderecoOption.nome }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

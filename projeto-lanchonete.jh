@@ -1,0 +1,75 @@
+// Este codigo representa -de forma simples- a ideia de um aplicativo de pedidos de lanche, sem ligações externas.
+// Onde o cliente fará o cadastro do seu perfil, com dados e informações pessoais
+// Poderá entrar com multiplos endereços e poderá fazer seus pedidos.
+
+// O proprio restaurante irá cadastrar produtos, sempre para manter o controle
+// e não acabar vendendo produtos que não estão mais disponiveis e outras falhas possiveis.
+
+
+entity PerfilUser { //vamos fazer o cadastro dos usuarios
+    nome 			String required
+    senha			String required
+    fotoUrl			String
+    cpf 			String 
+    dataNascimento	LocalDate
+    criado 			ZonedDateTime
+    email			String
+    contato			String
+    }
+    
+entity Endereco { //cadastrar endereços, podendo um usuario ter mais de um endereço. 
+	nome 			String
+    cep 			String required
+    logradouro 		String
+    bairro 			String
+    numero 			String
+    cidade 			String
+    complemento 	String
+}
+
+enum AndamentoPedido { // vamos usar um Enum para podemos utilizar a variação dos status do pedido.
+	AGUARDANDO_PAGAMENTO,
+    CANCELADO,
+    ESTORNADO,
+    ENTREGUE,
+    PEDIDO,    
+    PAGO
+    
+    }
+
+entity ProdutoEmEstoque {
+	nome 			String required
+    descricao 		TextBlob
+    fotoUrl 		String
+    sku 			String
+    ean 			String
+    criado 			ZonedDateTime
+    preco 			Double
+    precoPromocional Double
+    totalEstoque 	Integer
+        
+}
+
+entity Pedido { //guardar a data e hora do pedido e o status do mesmo
+	efetuado		ZonedDateTime
+    status 			AndamentoPedido
+    precoTotal 		Double
+    comentarios 	TextBlob
+    codigoPagamento String
+
+}
+
+entity ProdutoNoPedido{ //vamos ligar os produtos aos pedidos e saber a sua quantidade
+	quantidade 		Integer
+    preco 			Double
+    criado 			ZonedDateTime
+}
+
+relationship ManyToOne{
+	Endereco{perfilUser(nome)} 					to PerfilUser
+	Pedido{perfilUser(nome)} 					to PerfilUser
+	Pedido{endereco(nome)}						to Endereco
+    ProdutoNoPedido{produtoEmEstoque(nome)} 	to ProdutoEmEstoque
+    ProdutoNoPedido{pedido} 					to Pedido
+  
+}

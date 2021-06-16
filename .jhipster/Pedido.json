@@ -1,0 +1,53 @@
+{
+  "name": "Pedido",
+  "fields": [
+    {
+      "fieldName": "efetuado",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "AndamentoPedido",
+      "fieldValues": "AGUARDANDO_PAGAMENTO,CANCELADO,ESTORNADO,ENTREGUE,PEDIDO,PAGO"
+    },
+    {
+      "fieldName": "precoTotal",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "comentarios",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "codigoPagamento",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "perfilUser",
+      "otherEntityRelationshipName": "pedido",
+      "relationshipName": "perfilUser",
+      "otherEntityField": "nome"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "endereco",
+      "otherEntityRelationshipName": "pedido",
+      "relationshipName": "endereco",
+      "otherEntityField": "nome"
+    }
+  ],
+  "entityTableName": "pedido",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210616040507"
+}
