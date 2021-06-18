@@ -61,8 +61,11 @@ public class ProdutoNoPedido implements Serializable {
         return this;
     }
 
+    //adicioma quantidade e trata o estoque 
     public void setQuantidade(Integer quantidade) {
+
         this.quantidade = quantidade;
+
     }
 
     public Double getPreco() {
@@ -145,5 +148,32 @@ public class ProdutoNoPedido implements Serializable {
             ", preco=" + getPreco() +
             ", criado='" + getCriado() + "'" +
             "}";
+    }
+
+
+    public boolean debitarEstoque(){
+            if(produtoEmEstoque!=null){
+                if(quantidade!=null && quantidade>0){
+
+                    Integer totalAtual  = produtoEmEstoque.getTotalEstoque();
+                    if(totalAtual<quantidade){
+                        System.out.println(" Não pode remover pois estoque atual tem  "+totalAtual+" e quer remover "+produtoEmEstoque.getTotalEstoque());
+                        return false;
+                    }else {
+                            produtoEmEstoque.setTotalEstoque(totalAtual-quantidade);
+                            System.out.println(" Estoque era "+totalAtual+" e agora é "+produtoEmEstoque.getTotalEstoque());
+                            return true;
+                    }
+                }else 
+                {
+                    System.out.println(" Não pode remover estoque com quantidade nula no pedido ");
+                    return false;
+                
+                }
+
+            }else {
+                System.out.println(" Não pode remover estoque sem produto definido ");
+                return false;
+            }
     }
 }
