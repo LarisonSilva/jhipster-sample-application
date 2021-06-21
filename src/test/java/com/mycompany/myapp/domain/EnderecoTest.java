@@ -20,4 +20,14 @@ class EnderecoTest {
         endereco1.setId(null);
         assertThat(endereco1).isNotEqualTo(endereco2);
     }
+    @Test
+    void verificarEndereco() throws Exception{
+        Endereco logradouroTest = new  Endereco();
+        logradouroTest.setLogradouro("casa1");
+
+        Endereco logradouroTest2 = new  Endereco();
+        logradouroTest2.setId(null);
+
+        assertThat(logradouroTest2).isNotEqualTo(logradouroTest);
+    }
 }
